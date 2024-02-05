@@ -7,6 +7,10 @@ booteRouter.get("/", bootController.getAllBootsCtrl);
 
 booteRouter.get("/:bootId", bootController.getBootByIdCtrl);
 
-booteRouter.post("/", bootController.postNewBootCtrl)
+booteRouter.post("/", bootController.postNewBootCtrl);
+
+booteRouter.patch("/:bootId" , bootController.patchBootCtrl)
+
+booteRouter.delete("/:bootId", bootController.deleteOneBootCtrl)
 
 export default booteRouter;

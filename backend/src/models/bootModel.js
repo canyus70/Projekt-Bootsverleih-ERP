@@ -1,24 +1,34 @@
 import mongoose from "mongoose";
 
 const bootSchema = new mongoose.Schema({
-    reservierungs_status: {
-       type: Boolean,
-      
-       default: true // ist immer erst true also verfügbar
-     },
-     baujahr: {
-       type: Number
-     },
+  baujahr: {
+    type: Number,
+    required: true
+  },
+  seriennummer: {
+    type: String,
 
-     material: {
-       type: String
-      
+  
     
-     },
-     bootsart: {type: String},
-     upload_img: {type: String}
-   }, {timestamps: true});
-   
-   const BootModel = mongoose.model("BootModel", bootSchema, "boote");
-   
+   },
+  material: {
+    type: String,
+    required: true,
+    enum: ['GFK', 'Holz', 'Metall', 'Pappe', 'Seelen']
+  },
+  bootsart: {
+    type: String,
+    required: true,
+    enum: ['Tretboot', 'Segelboot', 'Luftkissenboot', 'Geisterschiff', 'Containerschiff']
+  },
+  bild: {
+    type: String, // Pfad zum Bild oder URL
+    required: false // Optional, falls nicht jedes Boot ein Bild haben muss
+  },
+  reservierstatus: { type: Boolean , default: true}
+  
+},{timestamps: true}); 
+  
+const BootModel = mongoose.model("BootModel", bootSchema, "boote");
+
 export default BootModel;

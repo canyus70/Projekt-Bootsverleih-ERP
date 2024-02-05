@@ -10,7 +10,6 @@ export async function getAllBoots() {
 
 
 
-
 export function makeBootList(boot) {
 
     
@@ -19,9 +18,8 @@ export function makeBootList(boot) {
         baujahr: boot.baujahr,
         reservierungs_status: boot.reservierungs_status,
         material: boot.material,
-        bootsart: boot.bootsart
-
-
+        bootsart: boot.bootsart,
+        seriennummer: boot.seriennummer
     }
 
 }
