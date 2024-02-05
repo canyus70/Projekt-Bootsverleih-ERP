@@ -9,8 +9,10 @@ booteRouter.get("/:bootId", bootController.getBootByIdCtrl);
 
 booteRouter.post("/", bootController.postNewBootCtrl);
 
-booteRouter.patch("/:bootId" , bootController.patchBootCtrl)
+booteRouter.patch("/:bootId" , bootController.patchBootCtrl);
 
-booteRouter.delete("/:bootId", bootController.deleteOneBootCtrl)
+booteRouter.patch("/:bootId/toggleDone" , bootController.patchToggleStatusCtrl);
+
+booteRouter.delete("/:bootId", bootController.deleteOneBootCtrl);
 
 export default booteRouter;

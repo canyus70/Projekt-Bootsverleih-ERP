@@ -2,6 +2,7 @@ import { addNewBoot } from "./addNewBoot.js";
 import { getAllBoots } from "./getAllBoots.js";
 import { getBootById } from "./getBootById.js";
 import { removeOneBootById } from "./removeOneBootById.js";
+import { toggleBootStatus } from "./toggleBootStatus.js";
 import { updatedBootById } from "./updatedBootById.js";
 
 
@@ -13,5 +14,6 @@ export const BootService = {
     getBootById,
     addNewBoot,
     updatedBootById,
-    removeOneBootById
+    removeOneBootById,
+    toggleBootStatus
 }
