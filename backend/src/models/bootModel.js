@@ -4,7 +4,7 @@ const bootSchema = new mongoose.Schema({
     reservierungs_status: {
        type: Boolean,
       
-       default: true // ist immer erst ture also verfügbar
+       default: true // ist immer erst true also verfügbar
      },
      baujahr: {
        type: Number
