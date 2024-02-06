@@ -1,10 +1,10 @@
-import  { BootModel }  from "../models/index.js";
+import { BootModel } from "../models/index.js";
 
 
 
 export async function getAllBoots() {
     const boots = await BootModel.find({});
-    return boots.map(boot =>  makeBootList(boot));
+    return boots.map(boot => makeBootList(boot));
 }
 
 
@@ -12,14 +12,15 @@ export async function getAllBoots() {
 
 export function makeBootList(boot) {
 
-    
+
     return {
-        id:boot._id,
+        id: boot._id,
         baujahr: boot.baujahr,
         reservierstatus: boot.reservierstatus,
         material: boot.material,
         bootsart: boot.bootsart,
-        seriennummer: boot.seriennummer
+        seriennummer: boot.seriennummer,
+        upload_img: boot.upload_img
     }
 
 };

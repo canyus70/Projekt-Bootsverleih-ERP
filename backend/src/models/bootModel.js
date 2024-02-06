@@ -8,9 +8,9 @@ const bootSchema = new mongoose.Schema({
   seriennummer: {
     type: String,
 
-  
-    
-   },
+
+
+  },
   material: {
     type: String,
     required: true,
@@ -21,14 +21,14 @@ const bootSchema = new mongoose.Schema({
     required: true,
     enum: ['Tretboot', 'Segelboot', 'Luftkissenboot', 'Geisterschiff', 'Containerschiff']
   },
-  bild: {
+  upload_img: {
     type: String, // Pfad zum Bild oder URL
     required: false // Optional, falls nicht jedes Boot ein Bild haben muss
   },
-  reservierstatus: { type: Boolean , default: true}
-  
-},{timestamps: true}); 
-  
+  reservierstatus: { type: Boolean, default: true }
+
+}, { timestamps: true });
+
 const BootModel = mongoose.model("BootModel", bootSchema, "boote");
 
 export default BootModel;
