@@ -1,0 +1,9 @@
+.dashBoard {
+  display: flex;
+  padding: 2% 5%;
+  gap: 2rem;
+  text-align: center;
+  div {
+    border: 2px solid tomato;
+  }
+}

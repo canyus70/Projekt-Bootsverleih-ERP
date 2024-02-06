@@ -8,7 +8,11 @@ booteRouter.get("/", bootController.getAllBootsCtrl);
 
 booteRouter.get("/:bootId", bootController.getBootByIdCtrl);
 
-booteRouter.post("/", upload.any(), bootController.postNewBootCtrl);
+booteRouter.post(
+  "/",
+  upload.single("upload_img"),
+  bootController.postNewBootCtrl
+);
 
 booteRouter.patch("/:bootId", bootController.patchBootCtrl);
 
