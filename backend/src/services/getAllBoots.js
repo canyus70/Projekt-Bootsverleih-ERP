@@ -22,4 +22,4 @@ export function makeBootList(boot) {
         seriennummer: boot.seriennummer
     }
 
-}
+};
