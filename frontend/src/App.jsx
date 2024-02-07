@@ -4,7 +4,7 @@ import "./App.scss";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import Details from "./pages/Details";
-import AddNewBoot from "./pages/addNewBoot";
+import AddNewBoot from "./pages/AddNewBoot";
 import AddReservierung from "./pages/AddReservierung";
 
 function App() {

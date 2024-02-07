@@ -9,13 +9,13 @@ import "./NavBar.scss";
 const NavBar = () => {
   return (
     <nav>
-      <Link>
+      <Link to='/'>
         <img src={home} alt="home" />
       </Link>
-      <Link>
+      <Link to="/gallery">
         <img src={boot} alt="boot" />
       </Link>
-      <Link>
+      <Link to="/new-reservation">
         <img src={kalender} alt="kalender" />
       </Link>
     </nav>

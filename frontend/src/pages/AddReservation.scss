@@ -2,6 +2,10 @@
 .react-datepicker .available {
     color: green;
 }
+
+.react-datepicker .unavailable {
+    color: red;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,15 +13,23 @@
 }
 
 body {
+    height: 100%;
+    margin: 0;
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+    display: flex; /* Nutze Flexbox */
+    justify-content: center; /* Zentriere Inhalt horizontal */
+    align-items: center; /* Zentriere Inhalt vertikal */
     padding: 20px;
     background-color: #f4f4f4;
 }
 
 .container {
-    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
+    max-width: 600px;
 }
 
 h1 {
@@ -25,7 +37,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-  /* Styling der Form und ihrer Elemente */
 form {
     background-color: #ffffff;
     padding: 20px;
@@ -51,10 +62,6 @@ form {
     border-radius: 5px;
 }
 
-  /* Stil für den DatePicker */
-.react-datepicker-wrapper {
-    margin-bottom: 20px;
-}
 
   /* Anpassung des Look-and-Feel der Buttons */
 button {
@@ -71,23 +78,15 @@ button {
 button:hover {
     background-color: #555;
 }
-
-  /* Responsive Design */
-@media (min-width: 768px) {
-    .form-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .form-group label,
-    .react-datepicker-wrapper {
-        flex: 1;
-        margin-right: 20px;
-    }
-
-    button {
-        width: auto;
-        margin-top: 20px;
-    }
-}
+.react-datepicker {
+    z-index: 2; /* oder eine höhere Zahl, falls nötig */
+  }
+  .react-datepicker {
+    position: absolute; /* oder 'fixed', je nach Bedarf */
+    top: 0; /* Anpassen, um die Position zu verschieben */
+    left: 30%; /* Zentriert den Kalender horizontal */
+    transform: translateY(-70%); 
+    width: fit-content;
+    height: fit-content;
+  }
+  
