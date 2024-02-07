@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 const AddNewBoot = () => {
-  const [baujahr, setBaujahr] = useState(0);
+  const [baujahr, setBaujahr] = useState();
   const [seriennummer, setSeriennummer] = useState("");
   const [bootsart, setBootsart] = useState("");
   const [material, setMaterial] = useState("");
+  const [name, setName] = useState("");
   const [image, setImage] = useState();
 
   const addNewBoot = async (e) => {
@@ -14,6 +15,7 @@ const AddNewBoot = () => {
     formData.append("seriennummer", seriennummer);
     formData.append("bootsart", bootsart);
     formData.append("material", material);
+    formData.append("name",name);
     formData.append("upload_img", image, image.name);
     console.log(image);
 
@@ -28,12 +30,21 @@ const AddNewBoot = () => {
   return (
     <form>
       <input
+        type="text"
+        placeholder="Name"
+        required
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <div>
+      <input
         type="number"
         placeholder="Baujahr"
         required
         value={baujahr}
         onChange={(e) => setBaujahr(e.target.value)}
       />
+      </div>
       <input
         type="text"
         placeholder="Seriennummer"
@@ -47,23 +58,24 @@ const AddNewBoot = () => {
         required
         value={material}
         onChange={(e) => setMaterial(e.target.value)}
-      >
-        <option value="" selected disabled>
+        >
+        <option value="" disabled>
           Bitte wähle ein Material
         </option>
         <option value="GFK">GFK</option>
         <option value="Holz">Holz</option>
         <option value="Metall">Metall</option>
         <option value="Pappe">Pappe</option>
+        <option value="Kunststoff">Kunststoff</option>
       </select>
       <select
-        name="bootsart"
-        id="bootsart"
-        required
-        value={bootsart}
-        onChange={(e) => setBootsart(e.target.value)}
+      name="bootsart"
+      id="bootsart"
+      required
+      value={bootsart}
+      onChange={(e) => setBootsart(e.target.value)}
       >
-        <option value="" selected disabled>
+        <option value="" disabled>
           Bitte wähle eine Bootsart
         </option>
         <option value="Tretboot">Tretboot</option>
@@ -71,6 +83,8 @@ const AddNewBoot = () => {
         <option value="Luftkissenboot">Luftkissenboot</option>
         <option value="Geisterschiff">Geisterschiff</option>
         <option value="Containerschiff">Containerschiff</option>
+        <option value="Motorboot">Motorboot</option>
+        <option value="Kreuzfahrtschiffe">Kreuzfahrtschiffe</option>
       </select>
       <input
         type="file"
@@ -81,5 +95,4 @@ const AddNewBoot = () => {
     </form>
   );
 };
-
 export default AddNewBoot;
