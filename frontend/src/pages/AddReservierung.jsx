@@ -80,21 +80,21 @@ console.log(selectedBoot);
 
   return ( 
     <form>
-    <h1>Reservierung</h1>
-    <div>
-      <label > Startdaten </label>
-    <input type="datetime-local" name="" id=""placeholder="Startdatum" value={start} onChange={(e) => setStart(e.target.value)}/>
-    </div>
-    <div>
-    <label > Enddaten </label>
-    <input type="datetime-local" name="" id=""placeholder="Enddatum" value={end} onChange={(e) => setEnd(e.target.value)}/>
-    </div>
-    <select value={selectedBoot} onChange={handleSelectChange}>
-      <option value="" disabled selected >Welches Boot</option>
-      {allBoot.map(boot => <option value={boot.id} key={boot.id}>{boot.name}</option> )}
-    </select>
-    <button onClick={addReservierung} type="submit">submit</button>
-  </form>
+      <h1>Reservierung</h1>
+      <div>
+        <label>Startdaten</label>
+        <input type="datetime-local" placeholder="Startdatum" value={start} onChange={(e) => setStart(e.target.value)}/>
+      </div>
+      <div>
+        <label>Enddaten</label>
+        <input type="datetime-local" placeholder="Enddatum" value={end} onChange={(e) => setEnd(e.target.value)}/>
+      </div>
+      <select value={selectedBoot} onChange={handleSelectChange}>
+        <option value="" disabled>Welches Boot</option>
+        {allBoot.map(boot => <option value={boot.id} key={boot.id}>{boot.name}</option>)}
+      </select>
+      <button onClick={addReservierung} type="submit">submit</button>
+    </form>
   );
 }
 
