@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import kalender from "../images/kalender.png";
 
 const Details = () => {
@@ -30,16 +31,18 @@ const Details = () => {
       <p>Material: {boot?.material}</p>
 
       <h4>Reservierung</h4>
+      <Link to="/new-reservation">
       <div>
-        {boot.reservierstatus?.status ? (
+        {!boot.reservierstatus?.status ? (
           <p>
-            reserviert :{boot.reservierstatus?.start} -
-            {boot.reservierstatus?.end}
+            reserviert von :{""} {boot.reservierstatus?.start.slice(0,10)} bis {""}
+            {boot.reservierstatus?.end.slice(0,10)}
           </p>
         ) : (
           <img src={kalender} alt="kalender" />
         )}
       </div>
+      </Link>
     </div>
   );
 };
