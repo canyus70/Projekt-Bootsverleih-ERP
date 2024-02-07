@@ -5,6 +5,7 @@
     transition: all 600ms linear;
     padding-bottom: 5%;
     margin-top: 5vh;
+
 	&:hover {
 		transform: scale(1.2);
 		outline: 3px solid #f2b5d4;
@@ -35,7 +36,7 @@
     }
 
 h3 {
-    color: #f2b5d4;
+    color: #a2d2ff;
     margin: 1vh auto;
     font-size: 0.8vw;
     display: inline-block;

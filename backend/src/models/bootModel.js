@@ -27,7 +27,9 @@ const bootSchema = new mongoose.Schema(
         "Luftkissenboot",
         "Schnellboot",
         "Motorboot",
-        "Kreuzfahrtschiffe"
+        "Kreuzfahrtschiffe",
+        "Containerschiff",
+        "Geisterschiff"
 
       ],
     },
