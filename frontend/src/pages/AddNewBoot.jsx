@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./AddNewBoot.scss";
 
 const AddNewBoot = () => {
   const [baujahr, setBaujahr] = useState();
@@ -15,7 +16,7 @@ const AddNewBoot = () => {
     formData.append("seriennummer", seriennummer);
     formData.append("bootsart", bootsart);
     formData.append("material", material);
-    formData.append("name",name);
+    formData.append("name", name);
     formData.append("upload_img", image, image.name);
     console.log(image);
 
@@ -28,7 +29,7 @@ const AddNewBoot = () => {
   };
 
   return (
-    <form>
+    <form className="form">
       <input
         type="text"
         placeholder="Name"
@@ -37,13 +38,13 @@ const AddNewBoot = () => {
         onChange={(e) => setName(e.target.value)}
       />
       <div>
-      <input
-        type="number"
-        placeholder="Baujahr"
-        required
-        value={baujahr}
-        onChange={(e) => setBaujahr(e.target.value)}
-      />
+        <input
+          type="number"
+          placeholder="Baujahr"
+          required
+          value={baujahr}
+          onChange={(e) => setBaujahr(e.target.value)}
+        />
       </div>
       <input
         type="text"
@@ -58,7 +59,7 @@ const AddNewBoot = () => {
         required
         value={material}
         onChange={(e) => setMaterial(e.target.value)}
-        >
+      >
         <option value="" disabled>
           Bitte wähle ein Material
         </option>
@@ -69,11 +70,11 @@ const AddNewBoot = () => {
         <option value="Kunststoff">Kunststoff</option>
       </select>
       <select
-      name="bootsart"
-      id="bootsart"
-      required
-      value={bootsart}
-      onChange={(e) => setBootsart(e.target.value)}
+        name="bootsart"
+        id="bootsart"
+        required
+        value={bootsart}
+        onChange={(e) => setBootsart(e.target.value)}
       >
         <option value="" disabled>
           Bitte wähle eine Bootsart
