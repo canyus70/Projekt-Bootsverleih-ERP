@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BootItem from "../components/BootItem";
+import "./Gallery.scss"
 
 const Gallery = () => {
   const [allBoots, setAllBoots] = useState([]);
@@ -13,7 +14,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <section>
+    <section className="gallery">
       {allBoots.map((boot, index) => (
         <BootItem key={index} {...boot} id={boot.id} />
       ))}
