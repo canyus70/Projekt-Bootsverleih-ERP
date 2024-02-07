@@ -6,7 +6,7 @@ const AddNewBoot = () => {
   const [bootsart, setBootsart] = useState("");
   const [material, setMaterial] = useState("");
   const [name, setName] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
 
   const addNewBoot = async (e) => {
     e.preventDefault();
