@@ -30,12 +30,15 @@
     outline: none;
     border: 2px solid var(--blue);
   }
-  input[type="submit"] {
+  .button {
     background-color: var(--blue);
     border: none;
     border-radius: 2rem;
     font-size: 1.25rem;
     color: white;
+  }
+  .button:active {
+    transform: scale(0.95);
   }
 
   input[type="file"] {

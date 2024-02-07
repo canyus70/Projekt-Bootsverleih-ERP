@@ -92,7 +92,12 @@ const AddNewBoot = () => {
         required
         onChange={(e) => setImage(e.target.files[0])}
       />
-      <input type="submit" value="Submit" onClick={addNewBoot} />
+      <input
+        className="button"
+        type="submit"
+        value="Submit"
+        onClick={addNewBoot}
+      />
     </form>
   );
 };

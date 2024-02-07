@@ -22,10 +22,10 @@ const Home = () => {
         );
       });
   }, []);
-console.log(allBootsZahl);
+  console.log(allBootsZahl);
   return (
     <section>
-      <NavBar />
+      {/* <NavBar /> */}
       <article className="dashBoard">
         <div>
           <h2>Aktuelle Reservierungen</h2>
