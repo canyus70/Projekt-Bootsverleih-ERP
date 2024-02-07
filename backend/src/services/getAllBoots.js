@@ -24,4 +24,4 @@ export function makeBootList(boot) {
         upload_img: boot.upload_img
     }
 
-}
+};
