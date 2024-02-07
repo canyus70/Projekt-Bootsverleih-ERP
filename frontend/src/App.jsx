@@ -6,11 +6,13 @@ import Gallery from "./pages/Gallery";
 import Details from "./pages/Details";
 import AddNewBoot from "./pages/AddNewBoot";
 import AddReservierung from "./pages/AddReservierung";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <NavBar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />

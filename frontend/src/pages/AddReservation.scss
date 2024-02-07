@@ -22,7 +22,6 @@ body {
     display: flex; /* Nutze Flexbox */
     justify-content: center; /* Zentriere Inhalt horizontal */
     align-items: center; /* Zentriere Inhalt vertikal */
-    padding: 20px;
     background-color: #f4f4f4;
 }
 
@@ -78,15 +77,20 @@ button {
 button:hover {
     background-color: #555;
 }
+
 .react-datepicker {
-    z-index: 2; /* oder eine höhere Zahl, falls nötig */
-  }
-  .react-datepicker {
-    position: absolute; /* oder 'fixed', je nach Bedarf */
-    top: 0; /* Anpassen, um die Position zu verschieben */
-    left: 30%; /* Zentriert den Kalender horizontal */
-    transform: translateY(-70%); 
+    font-size: 0.9rem; /* Verkleinert die Schriftgröße, was auch die gesamte Komponente kleiner macht */
+}
+
+.react-datepicker__week{
+    aspect-ratio: 0;
+    padding-top: 2%;
+}
+
+.react-datepicker__header{
+    height: 6rem;
     width: fit-content;
+}
+.react-datepicker__month-container{
     height: fit-content;
-  }
-  
+}

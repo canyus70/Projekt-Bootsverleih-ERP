@@ -18,6 +18,7 @@ const NavBar = () => {
       <Link to="/new-reservation">
         <img src={kalender} alt="kalender" />
       </Link>
+      <Link to='/add-new-boot'><h1 className="plus" >➕</h1></Link>
     </nav>
   );
 };

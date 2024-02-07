@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import kalender from "../images/kalender.png";
+import './Detail.scss'
 
 const Details = () => {
   const id = useParams();
@@ -18,28 +19,30 @@ const Details = () => {
 
   console.log(boot);
   return (
-    <div>
+    <div className="container_details">
+      <h1>Detail-Seite</h1>
       <img
+
         src={`http://localhost:5555/api/v1/images/${boot.upload_img}`}
         alt={boot.bootsart}
       />
 
-      <h1>Boat Detail</h1>
       <h3>{boot?.bootart}</h3>
+      <h2>{boot?.name}</h2>
       <p>Serienr: {boot?.seriennummer}</p>
       <p>Baujahr: {boot?.baujahr}</p>
       <p>Material: {boot?.material}</p>
 
       <h4>Reservierung</h4>
       <Link to="/new-reservation">
-      <div>
+      <div className="res_container">
         {!boot.reservierstatus?.status ? (
           <p>
             reserviert von :{""} {boot.reservierstatus?.start.slice(0,10)} bis {""}
             {boot.reservierstatus?.end.slice(0,10)}
           </p>
         ) : (
-          <img src={kalender} alt="kalender" />
+          <img src={kalender} alt="kalender"       className="img_detail"/>
         )}
       </div>
       </Link>

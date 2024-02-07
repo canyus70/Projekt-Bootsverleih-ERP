@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import './AddReservation.scss'
 import 'react-datepicker/dist/react-datepicker.css';
+import NavBar from "../components/NavBar";
 
 
 const AddReservierung = () => {
@@ -93,6 +94,7 @@ const AddReservierung = () => {
       <div className="form-group">
         <label htmlFor="end">Enddatum:</label>
         <DatePicker
+          popperPlacement="bootom"
           id="end"
           selected={endDate}
           onChange={(date) => setEndDate(date)}

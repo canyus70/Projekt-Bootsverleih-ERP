@@ -14,6 +14,7 @@ const BootItem = ({
       <section className="itemWrapper">
         <div>
         <img
+        className="galleryimg"
           src={`http://localhost:5555/api/v1/images/${upload_img}`}
           alt={bootsart}
           />

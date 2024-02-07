@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './AddNewBoot.scss'
 
 const AddNewBoot = () => {
   const [baujahr, setBaujahr] = useState();
@@ -7,6 +8,7 @@ const AddNewBoot = () => {
   const [material, setMaterial] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
+  
 
   const addNewBoot = async (e) => {
     e.preventDefault();
@@ -28,7 +30,8 @@ const AddNewBoot = () => {
   };
 
   return (
-    <form>
+    <div>
+    <form className="form">
       <input
         type="text"
         placeholder="Name"
@@ -59,7 +62,7 @@ const AddNewBoot = () => {
         value={material}
         onChange={(e) => setMaterial(e.target.value)}
         >
-        <option value="" disabled>
+        <option value="" selected disabled>
           Bitte wähle ein Material
         </option>
         <option value="GFK">GFK</option>
@@ -93,6 +96,7 @@ const AddNewBoot = () => {
       />
       <input type="submit" value="Submit" onClick={addNewBoot} />
     </form>
+    </div>
   );
 };
 export default AddNewBoot;

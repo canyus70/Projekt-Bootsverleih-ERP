@@ -16,16 +16,16 @@ const Home = () => {
         const reserviertBoots = result.filter(
           (boot) => boot.reservierstatus.status === true
         );
-        setReserviertBootsZahl(reserviertBoots.length);
-        setVerfügbarBootsZahl(
-          Number(allBootsZahl) - Number(reserviertBootsZahl)
+        const verfügbareBoots = result.filter(
+          (boot) => boot.reservierstatus.status === false
         );
+        setReserviertBootsZahl(reserviertBoots.length);
+        setVerfügbarBootsZahl(verfügbareBoots.length);
       });
   }, []);
 console.log(allBootsZahl);
   return (
     <section>
-      <NavBar />
       <article className="dashBoard">
         <div>
           <h2>Aktuelle Reservierungen</h2>
