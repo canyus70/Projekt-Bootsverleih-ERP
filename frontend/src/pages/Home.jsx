@@ -22,7 +22,7 @@ const Home = () => {
         );
       });
   }, []);
-
+console.log(allBootsZahl);
   return (
     <section>
       <NavBar />

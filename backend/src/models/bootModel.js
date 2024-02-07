@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const bootSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true
+    },
     baujahr: {
       type: Number,
       required: true,
@@ -12,7 +16,7 @@ const bootSchema = new mongoose.Schema(
     material: {
       type: String,
       required: true,
-      enum: ["GFK", "Holz", "Metall", "Pappe", "Seelen"],
+      enum: ["GFK", "Holz", "Metall", "Pappe", "Kunststoff"],
     },
     bootsart: {
       type: String,
@@ -21,8 +25,10 @@ const bootSchema = new mongoose.Schema(
         "Tretboot",
         "Segelboot",
         "Luftkissenboot",
-        "Geisterschiff",
-        "Containerschiff",
+        "Schnellboot",
+        "Motorboot",
+        "Kreuzfahrtschiffe"
+
       ],
     },
     upload_img: {
