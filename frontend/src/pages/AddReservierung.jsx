@@ -9,40 +9,31 @@ const AddReservierung = () => {
   const [selectedBoot,setSelectedBoot] = useState("")
 
   const addReservierung = async (e) => {
-    e.preventDefault()
-    if(selectedBoot) {
+    e.preventDefault();
+    if (selectedBoot) {
       try {
-        const res = await fetch(`http://localhost:5555/api/v1/boot/${selectedBoot}`,
-        {
-          method:'PATCH',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({
-            start,
-            end,
-            selectedBoot
+        const res = await fetch(`http://localhost:5555/api/v1/boot/${selectedBoot}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            reservierstatus: {
+              status: false, 
+              start: start, 
+              end: end 
+            }
           })
         });
-        if (res.ok){
-        console.log("Reservierung Erfolgreich");
-        console.log(res);
-        res.json({
-          success:true,
-          result
-        });
-
-        }else {
-          console.error("Fehler beim Hinzufügen der Reservierung")
+        const data = await res.json();
+        if (res.ok) {
+          console.log("Reservierung Erfolgreich", data);
+        } else {
+          console.error("Fehler beim Hinzufügen der Reservierung", data);
         }
-
-      }catch (err){
-        console.error("Fehler beim Sende der Anfrage", err);
-        res.json({
-          success:false,
-          message:err.message
-        })
+      } catch (err) {
+        console.error("Fehler beim Senden der Anfrage", err);
       }
     }
-  }
+  };
 console.log(selectedBoot);
   const toDateTimeLocal = (date) => {
     const ten = (i) => (i < 10 ? '0' : '') + i;
