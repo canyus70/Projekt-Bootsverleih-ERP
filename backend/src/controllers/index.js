@@ -4,6 +4,7 @@ import { getBootByIdCtrl } from "./getBootByIdCtrl.js";
 import { patchBootCtrl } from "./patchBootCtrl.js";
 import { patchToggleStatusCtrl } from "./patchToggleStatusCtrl.js";
 import { postNewBootCtrl } from "./postNewBootCtrl.js";
+import { postRegisterUserCtrl } from "./postRegisterUserCtrl.js";
 
 
 
@@ -16,4 +17,8 @@ export const bootController = {
     patchBootCtrl,
     deleteOneBootCtrl,
     patchToggleStatusCtrl
+}
+
+export const userController = {
+    postRegisterUserCtrl
 }

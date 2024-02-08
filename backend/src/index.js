@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { booteRouter } from "./routes/index.js";
+import { booteRouter, userRouter } from "./routes/index.js";
 
 dotenv.config();
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -17,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/v1/images", express.static("uploads"));
 app.use("/api/v1/boot", booteRouter.default);
+app.use("/api/v1/users", userRouter.default);
 
 const serverListenToPort = () =>
 app.listen(PORT, () => console.log("Server listening on port", PORT)); 
