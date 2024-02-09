@@ -32,7 +32,7 @@ const AddReservierung = () => {
     if (selectedBoot) {
       try {
         const res = await fetch(`http://localhost:5555/api/v1/boot/${selectedBoot}`, {
-          method: "PATCH",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             reservierstatus: {
@@ -55,23 +55,33 @@ const AddReservierung = () => {
   };
 
   const isDateAvailable = (date) => {
-    console.log('Überprüfe Verfügbarkeit für Datum:', date);
+    console.log('Überprüfe Verfügbarkeit für Datum:', date, 'für Boot:', selectedBoot);
   
-    return allBoot.every((boot) => {
-      const startReservierung = boot.reservierstatus.start && new Date(boot.reservierstatus.start);
-      const endReservierung = boot.reservierstatus.end && new Date(boot.reservierstatus.end);
-
-      const available = !startReservierung || !endReservierung || (date < startReservierung || date > endReservierung);
-
-      console.log(`Boot ${boot.name} Verfügbarkeit:`, available);
-      
-      return available;
-    });
+    if (!selectedBoot) return false; // Wenn kein Boot ausgewählt ist, alle Daten als verfügbar behandeln
+  
+    const boot = allBoot.find((boot) => boot.id === selectedBoot);
+    if (!boot) return false; // Wenn das ausgewählte Boot nicht gefunden wurde, Datum als verfügbar behandeln
+  
+    const startReservierung = boot.reservierstatus.start && new Date(boot.reservierstatus.start);
+    const endReservierung = boot.reservierstatus.end && new Date(boot.reservierstatus.end);
+  
+    const available = !startReservierung || !endReservierung || (date < startReservierung || date > endReservierung);
+  
+    console.log(`Boot ${boot.name} Verfügbarkeit:`, available);
+  
+    return available;
   };
-
+  
+  // Aktualisiere die onChange Methode des select Elements, um die DatePicker Komponenten zu aktualisieren
   const handleSelectChange = (e) => {
     setSelectedBoot(e.target.value);
+    // Trigger eine Aktualisierung der DatePicker, um die Verfügbarkeit für das ausgewählte Boot zu prüfen
+    setStartDate(new Date()); // Setze das Startdatum erneut, um die Komponente zu zwingen, sich zu aktualisieren
+    setEndDate(new Date()); // Setze das Enddatum erneut
   };
+  
+
+
 
   return (
     <div className="container">

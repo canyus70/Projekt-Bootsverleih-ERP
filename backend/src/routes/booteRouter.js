@@ -14,7 +14,7 @@ booteRouter.post(
   bootController.postNewBootCtrl
 );
 
-booteRouter.patch("/:bootId", bootController.patchBootCtrl);
+booteRouter.post("/:bootId", bootController.patchBootCtrl);
 
 booteRouter.patch("/:bootId/toggleDone", bootController.patchToggleStatusCtrl);
 

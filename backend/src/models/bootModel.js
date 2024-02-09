@@ -37,11 +37,11 @@ const bootSchema = new mongoose.Schema(
       type: String, // Pfad zum Bild oder URL
       required: false, // Optional, falls nicht jedes Boot ein Bild haben muss
     },
-    reservierstatus: {
-      status: { type: Boolean, default: true },
-      start: { type: String },
-      end: { type: String },
-    },
+    reservierungen: [{
+      status: { type: Boolean, default: false },
+      start: { type: Date, required: true },
+      end: { type: Date, required: true },
+    }],
   },
   { timestamps: true }
 );
