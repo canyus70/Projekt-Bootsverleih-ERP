@@ -17,7 +17,7 @@ export function makeBootList(boot) {
         id: boot._id,
         name: boot.name,
         baujahr: boot.baujahr,
-        reservierstatus: boot.reservierstatus,
+        reservierungen: boot.reservierungen,
         material: boot.material,
         bootsart: boot.bootsart,
         seriennummer: boot.seriennummer,
