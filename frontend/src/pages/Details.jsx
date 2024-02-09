@@ -1,51 +1,52 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import kalender from "../images/kalender.png";
+import Calendar from 'react-calendar'; 
 import './Detail.scss'
 
 const Details = () => {
-  const id = useParams();
-  console.log(id);
+  const { bootId } = useParams(); 
   const [boot, setBoot] = useState({});
+  
+  
   useEffect(() => {
-    fetch(`http://localhost:5555/api/v1/boot/${id.bootId}`)
+    fetch(`http://localhost:5555/api/v1/boot/${bootId}`)
       .then((res) => res.json())
       .then(({ success, result, error }) => {
         if (!success) console.log(error);
         setBoot(result);
       });
-  }, [id]);
+  }, [bootId]);
 
-  console.log(boot);
   return (
     <div className="container_details">
       <h1>Detail-Seite</h1>
       <img
-
         src={`http://localhost:5555/api/v1/images/${boot.upload_img}`}
         alt={boot.bootsart}
       />
-
-      <h3>{boot?.bootart}</h3>
+      <h3>{boot?.bootsart}</h3> 
       <h2>{boot?.name}</h2>
-      <p>Serienr: {boot?.seriennummer}</p>
+      <p>Seriennummer: {boot?.seriennummer}</p> 
       <p>Baujahr: {boot?.baujahr}</p>
       <p>Material: {boot?.material}</p>
 
-      <h4>Reservierung</h4>
-      <Link to="/new-reservation">
+      <h4>Reservierungen</h4>
       <div className="res_container">
-        {!boot.reservierstatus?.status ? (
-          <p>
-            reserviert von :{""} {boot.reservierstatus?.start.slice(0,10)} bis {""}
-            {boot.reservierstatus?.end.slice(0,10)}
-          </p>
+        {boot.reservierungen?.length > 0 ? (
+          <ul>
+            {boot.reservierungen.map(reservierung => (
+              <li key={reservierung._id}>
+                Reserviert von: {reservierung.start.slice(0, 10)} bis {reservierung.end.slice(0, 10)}
+              </li>
+            ))}
+          </ul>
         ) : (
-          <img src={kalender} alt="kalender"       className="img_detail"/>
+          <Link to="/new-reservation">
+            <img src={kalender} alt="kalender" className="img_detail"/>
+          </Link>
         )}
       </div>
-      </Link>
     </div>
   );
 };

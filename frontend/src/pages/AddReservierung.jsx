@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import './AddReservation.scss'
 import 'react-datepicker/dist/react-datepicker.css';
-import NavBar from "../components/NavBar";
 
 
 const AddReservierung = () => {
@@ -10,6 +9,9 @@ const AddReservierung = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [selectedBoot, setSelectedBoot] = useState("");
+  const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState('');
+const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchBoats = async () => {
@@ -30,54 +32,59 @@ const AddReservierung = () => {
   const addReservierung = async (e) => {
     e.preventDefault();
     if (selectedBoot) {
+      setLoading(true);
+      setMessage('');
+      setError('');
       try {
         const res = await fetch(`http://localhost:5555/api/v1/boot/${selectedBoot}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            reservierstatus: {
               status: false,
               start: startDate.toISOString(),
               end: endDate.toISOString(),
-            },
           }),
         });
         const data = await res.json();
         if (res.ok) {
           console.log("Reservierung erfolgreich", data);
+          setMessage(`Reservierung erfolgreich! Sie haben von ${startDate.toDateString()} bis ${endDate.toDateString()} gebucht. Sie erhalten in Kürze eine Bestätigungs-E-Mail.`);
+          setSelectedBoot("");
+          setStartDate(new Date());
+          setEndDate(new Date());
         } else {
           console.error("Fehler beim Hinzufügen der Reservierung", data);
+          setError(`Fehler beim Hinzufügen der Reservierung: ${data.message}`);
         }
       } catch (err) {
         console.error("Fehler beim Senden der Anfrage", err);
+        setError(`Fehler beim Senden der Anfrage: ${err.message}`);
+      }finally{
+        setLoading(false);
       }
     }
   };
 
   const isDateAvailable = (date) => {
-    console.log('Überprüfe Verfügbarkeit für Datum:', date, 'für Boot:', selectedBoot);
-  
-    if (!selectedBoot) return false; // Wenn kein Boot ausgewählt ist, alle Daten als verfügbar behandeln
+    if (!selectedBoot) return true; 
   
     const boot = allBoot.find((boot) => boot.id === selectedBoot);
-    if (!boot) return false; // Wenn das ausgewählte Boot nicht gefunden wurde, Datum als verfügbar behandeln
-  
-    const startReservierung = boot.reservierstatus.start && new Date(boot.reservierstatus.start);
-    const endReservierung = boot.reservierstatus.end && new Date(boot.reservierstatus.end);
-  
-    const available = !startReservierung || !endReservierung || (date < startReservierung || date > endReservierung);
-  
-    console.log(`Boot ${boot.name} Verfügbarkeit:`, available);
-  
-    return available;
+    if (!boot || !boot.reservierungen || boot.reservierungen.length === 0) return true; 
+
+    return !boot.reservierungen.some(reservierung => {
+      const startReservierung = new Date(reservierung.start);
+      const endReservierung = new Date(reservierung.end);
+      return date >= startReservierung && date <= endReservierung;
+    });
   };
   
-  // Aktualisiere die onChange Methode des select Elements, um die DatePicker Komponenten zu aktualisieren
+  
+
   const handleSelectChange = (e) => {
     setSelectedBoot(e.target.value);
-    // Trigger eine Aktualisierung der DatePicker, um die Verfügbarkeit für das ausgewählte Boot zu prüfen
-    setStartDate(new Date()); // Setze das Startdatum erneut, um die Komponente zu zwingen, sich zu aktualisieren
-    setEndDate(new Date()); // Setze das Enddatum erneut
+
+    setStartDate(new Date());
+    setEndDate(new Date()); 
   };
   
 
@@ -91,34 +98,30 @@ const AddReservierung = () => {
       <div className="form-group">
         <label htmlFor="start">Startdatum:</label>
         <DatePicker
-          className="react-datepicker-unavailable"
-          id="start"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          filterDate={isDateAvailable}
-          dateFormat="P"
-          dayClassName={(date) => isDateAvailable(date) ? 'available' : 'unavailable'}
-        />
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        filterDate={(date) => isDateAvailable(date)}
+        dateFormat="P"
+        dayClassName={(date) => isDateAvailable(date) ? 'available' : 'unavailable'}
+/>
       </div>
 
       <div className="form-group">
         <label htmlFor="end">Enddatum:</label>
         <DatePicker
-          popperPlacement="bootom"
-          id="end"
-          selected={endDate}
-          onChange={(date) => setEndDate(date)}
-          filterDate={isDateAvailable}
-          dateFormat="P"
-          minDate={startDate}
-          dayClassName={(date) => isDateAvailable(date) ? 'available' : 'unavailable'}
-        />
+        selected={endDate}
+        onChange={(date) => setEndDate(date)}
+        minDate={startDate}
+        filterDate={(date) => isDateAvailable(date) && date >= startDate}
+        dateFormat="P"
+        dayClassName={(date) => isDateAvailable(date) && date >= startDate ? 'available' : 'unavailable'}
+/>
       </div>
 
       <div className="form-group">
         <label htmlFor="boot">Boot auswählen:</label>
         <select id="boot" value={selectedBoot} onChange={handleSelectChange}>
-          <option value="">Bitte wählen Sie ein Boot</option>
+          <option value="" selected disabled>Bitte wählen Sie ein Boot</option>
           {allBoot.map((boot) => (
             <option key={boot.id} value={boot.id}>
               {boot.name}
@@ -129,6 +132,11 @@ const AddReservierung = () => {
 
       <button type="submit">Reservierung hinzufügen</button>
     </form>
+    <div>
+        {loading && <p>Reservierung wird hinzugefügt...</p>}
+        {message && <p className="success">{message}</p>}
+        {error && <p className="error">{error}</p>}
+    </div>
     </div>
   );
 };

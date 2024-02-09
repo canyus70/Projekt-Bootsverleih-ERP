@@ -14,10 +14,10 @@ const Home = () => {
         if (!success) console.log(error);
         setAllBootsZahl(result.length);
         const reserviertBoots = result.filter(
-          (boot) => boot.reservierstatus.status === true
+          (boot) => boot.reservierungen[0].status === true
         );
         const verfügbareBoots = result.filter(
-          (boot) => boot.reservierstatus.status === false
+          (boot) => boot.reservierungen[0].status === false
         );
         setReserviertBootsZahl(reserviertBoots.length);
         setVerfügbarBootsZahl(verfügbareBoots.length);

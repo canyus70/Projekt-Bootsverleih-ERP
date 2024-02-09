@@ -1,17 +1,24 @@
 
-.react-datepicker .available {
-    color: green;
-}
-
-.react-datepicker .unavailable {
-    color: red;
-}
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+.react-datepicker__day.available {
+    background-color: green;
+}
 
+.react-datepicker__day.unavailable {
+    background-color: red;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
 body {
     height: 100%;
     margin: 0;
@@ -19,9 +26,9 @@ body {
     line-height: 1.6;
     padding: 20px;
     background-color: #f4f4f4;
-    display: flex; /* Nutze Flexbox */
-    justify-content: center; /* Zentriere Inhalt horizontal */
-    align-items: center; /* Zentriere Inhalt vertikal */
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
     background-color: #f4f4f4;
 }
 
@@ -79,7 +86,7 @@ button:hover {
 }
 
 .react-datepicker {
-    font-size: 0.9rem; /* Verkleinert die Schriftgröße, was auch die gesamte Komponente kleiner macht */
+    font-size: 0.9rem; 
 }
 
 .react-datepicker__week{
