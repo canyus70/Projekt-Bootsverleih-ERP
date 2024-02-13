@@ -1,4 +1,4 @@
-import { Usermodel } from "../models/index.js";
+import { UserModel } from "../models/index.js";
 import { generateRandomSalt, hashPassword } from "../utils/index.js";
 
 
@@ -6,7 +6,7 @@ export async function registerUser( { name, email, password})
 { 
     const passwordSalt = generateRandomSalt();
     const passwordHash = hashPassword(password, passwordSalt);
-    const user = new Usermodel({
+    const user = new UserModel({
         name,
         email,
         passwordHash,

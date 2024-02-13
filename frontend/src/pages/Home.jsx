@@ -23,7 +23,6 @@ const Home = () => {
         setVerfügbarBootsZahl(verfügbareBoots.length);
       });
   }, []);
-console.log(allBootsZahl);
   return (
     <section>
       <article className="dashBoard">

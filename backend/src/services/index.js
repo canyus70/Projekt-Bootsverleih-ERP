@@ -1,6 +1,8 @@
 import { addNewBoot } from "./addNewBoot.js";
 import { getAllBoots } from "./getAllBoots.js";
 import { getBootById } from "./getBootById.js";
+import { loginUser } from "./loginUser.js";
+import { refreshToken } from "./refreshToken.js";
 import { registerUser } from "./registerUser.js";
 import { removeOneBootById } from "./removeOneBootById.js";
 import { toggleBootStatus } from "./toggleBootStatus.js";
@@ -21,4 +23,6 @@ export const BootService = {
 
 export const Userservice = {
     registerUser,
+    loginUser,
+    refreshToken
 }

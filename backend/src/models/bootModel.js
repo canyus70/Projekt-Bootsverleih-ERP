@@ -42,6 +42,7 @@ const bootSchema = new mongoose.Schema(
       start: { type: String },
       end: { type: String },
     },
+    userId: { type: mongoose.Types.ObjectId, required: true },
   },
   { timestamps: true }
 );

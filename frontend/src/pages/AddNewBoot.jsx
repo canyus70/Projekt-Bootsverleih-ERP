@@ -24,6 +24,7 @@ const AddNewBoot = () => {
     const res = await fetch("http://localhost:5555/api/v1/boot", {
       method: "POST",
       body: formData,
+      headers: { authorization }
     });
     const { success, result, error } = await res.json();
     if (!success) console.log(error);

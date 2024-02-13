@@ -1,4 +1,4 @@
 import BootModel from "./bootModel.js";
-import Usermodel from "./User.js";
+import UserModel from "./User.js";
 
-export {BootModel, Usermodel} 
+export {BootModel, UserModel} 
